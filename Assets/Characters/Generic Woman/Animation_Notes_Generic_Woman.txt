@@ -1,0 +1,51 @@
+-- L&S Animation Clip Sequence Table --
+
+CHARACTER: Generic Woman
+
+---------------------------------------
+ACTION Still
+
+Start:	1
+End:	1
+
+---------------------------------------
+ACTION Idle Pose 1
+
+Start:	5
+End:	1002
+
+---------------------------------------
+ACTION Idle Action 1
+
+Start:	1010
+End:	2007
+
+---------------------------------------
+ACTION Idle Pose 2
+
+Start:	2020
+End:	2499
+
+---------------------------------------
+ACTION Idle Action 2
+
+Start:	2520
+End:	2999
+
+---------------------------------------
+ACTION Walk
+
+Start:	3010
+End:	3088
+
+---------------------------------------
+ACTION Dance
+
+Start:	3100
+End:	3219
+
+---------------------------------------
+ACTION Sit 
+
+Start:	3244
+End:	3720

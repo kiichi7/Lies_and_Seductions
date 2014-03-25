@@ -1,0 +1,75 @@
+-- L&S Animation Clip Sequence Table --
+
+CHARACTER: GENERIC_MAN
+
+---------------------------------------
+ACTION STILL (T-asento)
+
+Start:	1
+End:	1
+
+---------------------------------------
+ACTION WALK
+
+Start:	10
+End:	119
+
+---------------------------------------
+ACTION IDLE POSE 1
+
+Start:	140
+End:	639
+
+---------------------------------------
+ACTION IDLE POSE 2
+
+Start:	800
+End:	1579
+
+---------------------------------------
+ACTION IDLE Action 1
+
+Start:	1600
+End:	2000
+
+---------------------------------------
+ACTION IDLE Action 2
+
+Start:	2100
+End:	2440
+
+---------------------------------------
+ACTION SIT LOUNGER
+
+Start:	2500
+End:	2799
+
+---------------------------------------
+ACTION DANCE
+
+Start:	2900
+End:	3140
+
+---------------------------------------
+ACTION HOLD BEER
+
+Start:	3200
+End:	3400
+
+---------------------------------------
+ACTION DRINK BEER
+
+Start:	3500
+End:	3940
+
+---------------------------------------
+ACTION SIT DINING 
+
+Start:	4000
+End:	4439
+
+---------------------------------------
+ACTION SIT DINING 
+
+Start:	4500
+End:	4740

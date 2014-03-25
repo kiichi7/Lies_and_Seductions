@@ -1,0 +1,258 @@
+-- L&S Animation Clip Sequence Table --
+
+CHARACTER: Ed
+
+---------------------------------------
+ACTION Still
+
+Start:	1
+End:	1
+
+---------------------------------------
+ACTION Idle Pose 1
+
+Start:	1
+End:	720
+
+---------------------------------------
+ACTION Idle Action 1
+
+Start:	730
+End:	1449
+
+---------------------------------------
+ACTION Idle Pose 2
+
+Start:	1460
+End:	1760
+
+---------------------------------------
+ACTION Idle Pose 2 (holding beer)
+
+Start:	6070
+End:	6370
+
+---------------------------------------
+ACTION Idle Action 2
+
+Start:	
+End:	
+
+---------------------------------------
+ACTION Idle Action 2B
+
+Start:	1780
+End:	2080
+
+---------------------------------------
+ACTION Idle Action 2B (Holding beer)
+
+Start:	6380
+End:	6680
+
+---------------------------------------
+ACTION Walk
+
+Start:	2090
+End:	2170
+
+---------------------------------------
+ACTION Walk (Holding beer)
+
+Start:	6880
+End:	6960
+
+
+---------------------------------------
+ACTION Walk (Turning)
+
+Start:	2220
+End:	2300
+
+---------------------------------------
+ACTION Walk (Turning, holding beer)
+
+Start:	7010
+End:	7090
+
+
+---------------------------------------
+ACTION Sit down (Lounger) 
+
+Start: 2350	
+End: 2590
+
+---------------------------------------
+ACTION Sit down (Lounger, holding beer) 
+
+Start: 7140	
+End: 7380
+
+---------------------------------------
+ACTION Sit down (Restaurant) 
+
+Start: 9400	
+End: 9580
+
+---------------------------------------
+ACTION Sit (Lounger) 
+
+Start: 2600	
+End: 2890
+
+---------------------------------------
+ACTION Sit (Lounger, holding beer) 
+
+Start: 7390
+End: 7680
+
+---------------------------------------
+ACTION Sit (Restaurant) 
+
+Start: 9590	
+End: 9830
+
+---------------------------------------
+ACTION Stand up (Lounger) 
+
+Start: 2900	
+End: 3140
+
+---------------------------------------
+ACTION Stand up (Lounger, holding beer) 
+
+Start: 7690	
+End: 7930
+
+---------------------------------------
+ACTION Stand up (Restaurant) 
+
+Start: 9840	
+End: 10020
+
+---------------------------------------
+ACTION Drink beer
+
+Start: 3150	
+End: 3869	
+
+---------------------------------------
+ACTION Drink whiskey
+
+Start: 5340	
+End: 6059	
+
+---------------------------------------
+ACTION Take beer
+
+Start: 3880	
+End: 4599	
+
+---------------------------------------
+ACTION Take whiskey
+
+Start: 3880	
+End: 4599	
+
+---------------------------------------
+ACTION Hold beer
+
+Start: 4610	
+End: 5329	
+
+---------------------------------------
+ACTION Hold whiskey
+
+Start: 4610	
+End: 5329	
+
+---------------------------------------
+ACTION Eat
+
+Start: 10190	
+End: 10430
+
+---------------------------------------
+ACTION Take cards
+
+Start: 10030	
+End: 10180	
+
+---------------------------------------
+ACTION Move chips
+
+Start: 11750	
+End: 11920	
+
+---------------------------------------
+ACTION Idle poker
+
+Start: 10750	
+End: 10990	
+
+---------------------------------------
+ACTION Drunk neutral cards
+
+Start: 11000	
+End: 11240	
+
+---------------------------------------
+ACTION Drunk good cards
+
+Start: 11250	
+End: 11490
+
+---------------------------------------
+ACTION Drunk bad cards
+
+Start: 11500	
+End: 11740
+
+---------------------------------------
+BODY neutral (same as idle pose 1)
+
+Start: 1	
+End: 720
+
+---------------------------------------
+BODY like
+
+Start: 7940	
+End: 8660
+
+---------------------------------------
+BODY dislike
+
+Start: 8670	
+End: 9390
+
+---------------------------------------
+Face neutral 
+
+Start: 1	
+End: 1
+
+---------------------------------------
+Face like 
+
+Start: 7940	
+End: 7940
+
+---------------------------------------
+Face dislike 
+
+Start: 8670	
+End: 8670
+
+---------------------------------------
+ACTION Talk 
+
+Start: 10440	
+End: 10740
+
+---------------------------------------
+ACTION Kiss 
+
+Start: 11930	
+End: 12179
+
