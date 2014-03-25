@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Enabled</key>
+	<array>
+		<true/>
+		<true/>
+	</array>
+	<key>PathNames</key>
+	<array>
+		<string>Assets/Scenes/StartScreen.unity</string>
+		<string>Assets/Scenes/Combined.unity</string>
+	</array>
+	<key>standaloneOSXUniversal LastLocation</key>
+	<string>/Volumes/Lies/Unity3D/Lies/Lies.app</string>
+	<key>standaloneWin32 LastLocation</key>
+	<string>/Volumes/Lies/Unity3D/Lies/Lies_win</string>
+</dict>
+</plist>
