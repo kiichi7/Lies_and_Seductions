@@ -1,0 +1,136 @@
+#!/usr/bin/perl
+##############################################################################
+#
+# PostprocessBuildPlayer script for Lies and Seductions
+#
+# (c) 2008 Authors, All rights reserved.
+#
+# Author: Petri Lankoski, petri.lankoski@taik.fi
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY
+# EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+##############################################################################
+
+# Unity gives some information in ARGV
+# $ARGV[0]: installPath of player
+# $ARGV[1]: type of player ("dashboard", "standaloneWin32", "standaloneOSXIntel", 
+#                           "standaloneOSXPPC", "standaloneOSXUniversal", "webplayer")
+
+# This should point to Unity Project's Assets directory
+$workingDir = "/Volumes/Lies/Unity3D/Lies/Assets/";
+
+# dylib postprocessing tool
+$dylib_tool="/usr/bin/install_name_tool";
+$otool='/usr/bin/otool -L';
+
+$installPath = $ARGV[0];
+
+# Directories that we needs to be create to OSX Standalone Player bundle
+@osxDirsToCreate = (
+    "$installPath/Contents/Sounds",
+    "$installPath/Contents/Dialogue",
+    "$installPath/Licenses",
+    );
+
+# Directories that we need to create to Windows Standalone Player
+@winDirsToCreate = (
+     "$installPath/Data/Sounds",
+     "$installPath/Data/Dialogue",
+     "$installPath/Data/Licenses",
+     );
+
+# Files to copy from Development Environment to OSX Standalone Player
+$dylibTarget="$installPath/Contents/Plugins/";
+
+%osxFilesToCopy = (
+    '"$workingDir/Plugins/libfmodex.dylib"'=>  $dylibTarget,
+    '"$workingDir/Plugins/libfmodevent.dylib"'=>  $dylibTarget,
+    "$workingDir/Sounds/*.{fsb,fev}"=>$installPath . "/Contents/Sounds/",
+    "$workingDir/Dialogue/dialogue.xml"=>$installPath . "/Contents/Dialogue/",
+    "$workingDir/Licenses/*"=>$installPath . "/Licenses/",
+    );
+
+# Files to copy to Windows Standalone Player
+%winFilesToCopy = (
+    #"/Volumes/Lies/fmodapi_orig/fmodex.dll"=> $installPath,
+    #"/Volumes/Lies/fmodapi_orig/fmod_event.dll"=> $installPath,
+    "$workingDir/Sounds/*.{fsb,fev}"=>$installPath . "/Data/Sounds/",
+    "$workingDir/Dialogue/dialogue.xml"=>$installPath . "/Data/Dialogue/",
+    "$workingDir/Licenses/*"=>$installPath . "/Data/Licenses/",
+    );
+
+$unityFmodEXdylib="libfmodex.dylib";
+$unityFmodEVENTdylib="libfmodevent.dylib ";
+
+# Checking dylib references for libfmodex and libfmodevent
+$fmodBundleDylib = $workingDir . "Plugins/UnityFMod.bundle/Contents/MacOS/UnityFMod";
+$otoolOutSting = `$otool $fmodBundleDylib`;
+@otoolOutPut = split("\n", $otoolOutSting);
+@grepRest = grep(/$unityFmodEXdylib/, @otoolOutPut);
+($unityFmodEX, @ignore) = split(/ /, @grepRest[0]);
+@grepRest = grep(/$unityFmodEVENTdylib/, @otoolOutPut);
+($unityFmodEVENT, @ignore) = split(/ /, @grepRest[0]);
+
+#print "\n*********\n";
+#print "fmodevent: ",  $unityFmodEVENT, "\n";
+#print "fmodex: ", $unityFmodEX , "\n";
+#print "\n*********\n";
+
+#Commands to handle various things in OSX (currently mainly postprocessing dylibs)
+@osxCommandToRun = (
+    "$dylib_tool -change $unityFmodEVENT \@executable_path/../Plugins/libfmodevent.dylib $dylibTarget/UnityFMod.bundle/Contents/MacOS/UnityFMod",
+    "$dylib_tool -change $unityFmodEX \@executable_path/../Plugins/libfmodex.dylib $dylibTarget/UnityFMod.bundle/Contents/MacOS/UnityFMod",
+     #"$dylib_tool -change ./libfmodex.dylib \@executable_path/../Plugins/libfmodex.dylib $dylibTarget/libfmodevent.dylib"
+    );
+
+
+# next we need to figure out what kind build we are handling.
+$target = $ARGV[1];
+print "\nPostprocessBuildPlayer: Building for \"$target\"\n";
+
+# DO the actual stuff...
+if (($target eq "standaloneOSXUniversal") || ($target eq "standaloneOSXIntel") || ($target eq "standaloneOSXPPC")) {
+	
+    foreach $d (@osxDirsToCreate) {
+    	$command = "/bin/mkdir $d";
+    	print "> ", $command, "\n";
+    	if(system($command)) { print "PostprocessBuildPlayer ERROR: \"$command\" failed\n"; }
+    }
+	
+    while (($from, $dest) = each(%osxFilesToCopy)){
+	 $command = "/bin/cp $from $dest";
+	 print "> ", $command, "\n";
+	 if(system($command)) { print "PostprocessBuildPlayer ERROR: \"$command\" failed\n"; }
+
+    }
+    
+    foreach $command (@osxCommandToRun) {
+	 print "> ",  $command, "\n";
+	 if(system($command)) { print "PostprocessBuildPlayer ERROR: \"$command\" failed\n"; }
+    }
+   
+}
+elsif($target eq "standaloneWin32") {
+    foreach $d (@winDirsToCreate) {
+    	$command = "/bin/mkdir $d";
+    	print "> ", $command, "\n";
+    	if(system($command)) { print "PostprocessBuildPlayer ERROR: \"$command\" failed\n"; }
+    }
+    while (($from, $dest) = each(%winFilesToCopy)){
+	$command = "/bin/cp $from $dest";
+	print "> ", $command, "\n";
+	if(system($command)) { print "PostprocessBuildPlayer ERROR: \"$command\" failed\n"; }
+    }
+}
+else {
+    print "PostprocessBuildPlayer ERROR: Don't know how to PostProcess for \"$target\"\n";
+}
